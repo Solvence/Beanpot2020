@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "992568021458",
+    "firebase_url": "https://automated-alloy-259216.firebaseio.com",
+    "project_id": "automated-alloy-259216",
+    "storage_bucket": "automated-alloy-259216.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992568021458:android:677df66640fc3b7f2b380b",
+        "android_client_info": {
+          "package_name": "com.example.checkout_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992568021458-clc7v3v67otttekmkbdafgdp0uhr3dgm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.checkout_android",
+            "certificate_hash": "014134b35279202e070bf421ad95199afdff79e8"
+          }
+        },
+        {
+          "client_id": "992568021458-bjp2t7e1odh55v37bckfipgdrv933p7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyZmQgYclWT5vr6IHoD5PfGlZ8SXLPsM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992568021458-bjp2t7e1odh55v37bckfipgdrv933p7g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "992568021458-u807cerpmn1dba0qcnilot2p4plplsrf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kzysko.Checkout"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992568021458:android:7c7479de26f20e612b380b",
+        "android_client_info": {
+          "package_name": "com.example.hackbeanpot2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992568021458-bjp2t7e1odh55v37bckfipgdrv933p7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyZmQgYclWT5vr6IHoD5PfGlZ8SXLPsM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992568021458-bjp2t7e1odh55v37bckfipgdrv933p7g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "992568021458-u807cerpmn1dba0qcnilot2p4plplsrf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kzysko.Checkout"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
