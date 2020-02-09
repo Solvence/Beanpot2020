@@ -37,9 +37,9 @@ public class RestaurantUtil {
     private static final ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(2, 4, 60,
             TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 
-    private static final String RESTAURANT_URL_FMT = "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_%d.png";
+    private static final String RESTAURANT_URL_FMT = "https://tinyurl.com/hackbeanpot2020img%d";
 
-    private static final int MAX_IMAGE_NUM = 22;
+    private static final int MAX_IMAGE_NUM = 35;
 
     private static final String[] NAME_FIRST_WORDS = {
             "Beanpot Ticket",
@@ -48,7 +48,7 @@ public class RestaurantUtil {
             "Stylish Sneakers",
             "Nintendo Switch",
             "Free Airpods",
-            "Essay Editting Service",
+            "Essay Editing Service",
             "Spanish Lessons",
             "2020 BMW i8",
             "Large Two-story House",
@@ -110,6 +110,9 @@ public class RestaurantUtil {
     private static String getRandomImageUrl(Random random) {
         // Integer between 1 and MAX_IMAGE_NUM (inclusive)
         int id = random.nextInt(MAX_IMAGE_NUM) + 1;
+        while(id==3 || id==6 || id==8 || id==10 || id==12 || id==16 || id==23) {
+            id = random.nextInt(MAX_IMAGE_NUM) + 1;
+        }
 
         return String.format(Locale.getDefault(), RESTAURANT_URL_FMT, id);
     }

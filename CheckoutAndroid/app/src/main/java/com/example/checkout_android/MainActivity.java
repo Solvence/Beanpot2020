@@ -11,10 +11,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,9 +24,11 @@ import com.example.checkout_android.adapter.RestaurantAdapter;
 import com.example.checkout_android.model.Restaurant;
 import com.example.checkout_android.util.RestaurantUtil;
 import com.example.checkout_android.viewmodel.MainActivityViewModel;
+import com.example.checkout_android.viewmodel.PostDialogFragment;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -35,7 +38,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,6 +45,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements
+        PostDialogFragment.RatingListener,
         View.OnClickListener,
         FilterDialogFragment.FilterListener,
         RestaurantAdapter.OnRestaurantSelectedListener {
@@ -66,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements
     private RestaurantAdapter mAdapter;
 
     private MainActivityViewModel mViewModel;
+
+    BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements
 
         // Filter Dialog
         mFilterDialog = new FilterDialogFragment();
+
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        openFragment(com.example.checkout_android.HomeFragment.newInstance("", ""));
 
         db = FirebaseFirestore.getInstance();
         addAdaLovelace();
@@ -126,6 +135,41 @@ public class MainActivity extends AppCompatActivity implements
         // [END add_ada_lovelace]
     }
 
+    public void openFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+    BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Query query = db.collection("All Items");
+                    switch (item.getItemId()) {
+                        case R.id.navigation_home:
+                            mViewModel.changeFilters(null);
+                            onStart();
+                            return true;
+                        case R.id.navigation_products:
+                            mViewModel.changeFilters("Products");
+                            onStart();
+                            return true;
+                        case R.id.navigation_gigs:
+                            mViewModel.changeFilters("Gigs");
+                            onStart();
+                            return true;
+                        case R.id.navigation_events:
+                            mViewModel.changeFilters("Social");
+                            onStart();
+                            return true;
+                    }
+
+
+
+                    return false;
+                }
+            };
+
 
     public void createSignInIntent() {
         // [START auth_fui_create_intent]
@@ -143,38 +187,11 @@ public class MainActivity extends AppCompatActivity implements
         // [END auth_fui_create_intent]
     }
 
-    public void addAlanTuring() {
-        // [START add_alan_turing]
-        // Create a new user with a first, middle, and last name
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Alan");
-        user.put("middle", "Mathison");
-        user.put("last", "Turing");
-        user.put("born", 1912);
-
-        // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
-        // [END add_alan_turing]
-    }
-
     private void initFirestore() {
         db = FirebaseFirestore.getInstance();
 
         // Get the 50 highest rated restaurants
-        mQuery = db.collection("restaurants")
+        mQuery = db.collection("All Items")
                 .orderBy("avgRating", Query.Direction.DESCENDING)
                 .limit(LIMIT);
     }
@@ -239,9 +256,9 @@ public class MainActivity extends AppCompatActivity implements
 
     private void onAddItemsClicked() {
         // Get a reference to the restaurants collection
-        CollectionReference restaurants = db.collection("restaurants");
+        CollectionReference restaurants = db.collection("All Items");
 
-        CollectionReference subRef = db.collection("restaurants")
+        CollectionReference subRef = db.collection("All Items")
                 .document("abc123")
                 .collection("ratings");
 
@@ -257,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onFilter(Filters filters) {
         // Construct query basic query
-        Query query = db.collection("restaurants");
+        Query query = db.collection("All Items");
 
         // Category (equality filter)
         if (filters.hasCategory()) {
@@ -310,8 +327,26 @@ public class MainActivity extends AppCompatActivity implements
                 AuthUI.getInstance().signOut(this);
                 startSignIn();
                 break;
+            case R.id.menu_post:
+                new PostDialogFragment().show(getSupportFragmentManager(), RatingDialogFragment.TAG);
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onPost(Restaurant r) {
+        // Get a reference to the restaurants collection
+        CollectionReference restaurants = db.collection("All Items");
+
+        CollectionReference subRef = db.collection("All Items")
+                .document("abc123")
+                .collection("ratings");
+
+            // Get a random Restaurant POJO
+            Restaurant restaurant = RestaurantUtil.getRandom(this);
+
+            // Add a new document to the restaurants collection
+            restaurants.add(r);
     }
 
     @Override

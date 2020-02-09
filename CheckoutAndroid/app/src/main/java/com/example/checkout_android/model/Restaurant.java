@@ -23,7 +23,7 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Restaurant {
 
-    public static final String FIELD_CITY = "city";
+    public static final String FIELD_CITY = "school";
     public static final String FIELD_CATEGORY = "category";
     public static final String FIELD_PRICE = "price";
     public static final String FIELD_POPULARITY = "numRatings";
@@ -33,11 +33,37 @@ public class Restaurant {
     private String city;
     private String category;
     private String photo;
+    private String owner;
+    private String email;
     private int price;
     private int numRatings;
     private double avgRating;
 
-    public Restaurant() {}
+
+    public Restaurant(String name, String city, String category, String photo,
+                      int price, int numRatings, double avgRating, String owner, String email) {
+        this.name = name;
+        this.city = city;
+        this.category = category;
+        this.photo = photo;
+        this.price = price;
+        this.numRatings = numRatings;
+        this.avgRating = avgRating;
+        this.owner = owner;
+        this.email = email;
+    }
+
+    public Restaurant(String name, String city, String category, String owner, String email) {
+        this.name = name;
+        this.city = city;
+        this.category = category;
+        this.photo = "https://tinyurl.com/hackbeanpot2020img3";
+        this.price = 2;
+        this.numRatings = 0;
+        this.avgRating = 0;
+        this.owner = owner;
+        this.email = email;
+    }
 
     public Restaurant(String name, String city, String category, String photo,
                       int price, int numRatings, double avgRating) {
@@ -48,6 +74,13 @@ public class Restaurant {
         this.price = price;
         this.numRatings = numRatings;
         this.avgRating = avgRating;
+        this.owner = "Alan Turing";
+        this.email = "turing.a@husky.neu.edu";
+    }
+
+    public Restaurant() {
+        this.owner = "Alan Turing";
+        this.email = "turing.a@husky.neu.edu";
     }
 
     public String getName() {
@@ -104,5 +137,21 @@ public class Restaurant {
 
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String avgRating) {
+        this.email = email;
     }
 }

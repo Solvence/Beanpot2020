@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0E0E0"
-    tools:context="com.google.firebase.example.fireeats.RestaurantDetailActivity">
+    android:background="#E5E5E5"
+    tools:context="com.example.checkout_android.RestaurantDetailActivity">
 
     <RelativeLayout
         android:id="@+id/restaurant_top_card"
@@ -16,14 +16,14 @@
         <ImageView
             android:id="@+id/restaurant_image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="230dp"
             android:alpha="1.0"
             android:scaleType="centerCrop"
             tools:src="@drawable/food_1" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="230dp"
             android:background="@drawable/gradient_up" />
 
         <!-- Back button -->
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/restaurant_image"
             android:layout_alignLeft="@+id/restaurant_name"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="24dp"
             android:layout_marginTop="8dp"
             android:textColor="@android:color/white"
             tools:text="Italian" />

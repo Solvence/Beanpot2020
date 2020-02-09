@@ -25,8 +25,8 @@ import com.example.checkout_android.Filters;
 
 public class MainActivityViewModel extends ViewModel {
 
-    private boolean mIsSigningIn;
-    private Filters mFilters;
+    public boolean mIsSigningIn;
+    public Filters mFilters;
 
     public MainActivityViewModel() {
         mIsSigningIn = false;
@@ -47,5 +47,9 @@ public class MainActivityViewModel extends ViewModel {
 
     public void setFilters(Filters mFilters) {
         this.mFilters = mFilters;
+    }
+
+    public void changeFilters(String cat) {
+        this.mFilters.setCategory(cat);
     }
 }

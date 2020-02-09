@@ -104,7 +104,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements
         mFirestore = FirebaseFirestore.getInstance();
 
         // Get reference to the restaurant
-        mRestaurantRef = mFirestore.collection("restaurants").document(restaurantId);
+        mRestaurantRef = mFirestore.collection("All Items").document(restaurantId);
 
         // Get ratings
         Query ratingsQuery = mRestaurantRef
@@ -117,7 +117,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements
             @Override
             protected void onDataChanged() {
                 if (getItemCount() == 0) {
-                    mRatingsRecycler.setVisibility(View.GONE);
+                    mRatingsRecycler.setVisibility(View.VISIBLE);
                     mEmptyView.setVisibility(View.VISIBLE);
                 } else {
                     mRatingsRecycler.setVisibility(View.VISIBLE);
@@ -218,7 +218,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements
         mNameView.setText(restaurant.getName());
         mRatingIndicator.setRating((float) restaurant.getAvgRating());
         mNumRatingsView.setText(getString(R.string.fmt_num_ratings, restaurant.getNumRatings()));
-        mCityView.setText(restaurant.getCity());
+        mCityView.setText(restaurant.getCity() + " • " + restaurant.getOwner() + " • " + restaurant.getEmail());
         mCategoryView.setText(restaurant.getCategory());
         mPriceView.setText(RestaurantUtil.getPriceString(restaurant));
 

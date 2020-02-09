@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Checkout</string>
 
-    <string name="value_any_category">All food</string>
+    <string name="value_any_category">All categories</string>
     <string name="value_any_city">Anywhere</string>
     <string name="value_any_price">Any price</string>
 
@@ -10,12 +10,12 @@
     <string name="price_3">$$$</string>
 
     <string name="label_category">Category</string>
-    <string name="label_city">City</string>
+    <string name="label_city">School</string>
     <string name="label_price">Price</string>
     <string name="label_sort_by">Sort By</string>
 
     <string name="fmt_num_ratings" translatable="false">(%d)</string>
-    <string name="all_restaurants">All Restaurants</string>
+    <string name="all_restaurants">All Products/Services</string>
     <string name="header_filters">Filter</string>
     <string name="search">Search</string>
 
@@ -38,23 +38,15 @@
     <string name="hint_review">How was your experience?</string>
     <string name="submit">Submit</string>
     <string name="filter_add_review">Add review</string>
+    <string name="new_listing">Post</string>
 
     <!-- Types of food I could think of in 5 minutes -->
     <string-array name="categories">
         <item>@string/value_any_category</item>
 
-        <item>Electronics</item>
-        <item>Hobbies</item>
-        <item>Clothing</item>
-        <item>Accessories</item>
-        <item>Rentals</item>
-        <item>Home And Garden</item>
-        <item>Vehicles</item>
-        <item>Classifieds</item>
-        <item>Entertainment</item>
-        <item>Family</item>
-        <item>Home Sales</item>
-        <item>Service</item>
+        <item>Products</item>
+        <item>Gigs</item>
+        <item>Social</item>
     </string-array>
     ite
 

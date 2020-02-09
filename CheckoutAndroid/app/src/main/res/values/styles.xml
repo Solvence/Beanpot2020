@@ -11,6 +11,10 @@
         <item name="android:actionOverflowButtonStyle">@style/AppTheme.Overflow</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background</item>
+    </style>
+
     <style name="AppTheme.Activity" parent="AppTheme" />
 
     <style name="AppTheme.Overflow" parent="Base.Widget.AppCompat.ActionButton.Overflow">
