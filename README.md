@@ -8,3 +8,6 @@ Challenges:
 Initially we were creating the app on two platforms, Swift and Android studios, but since 2/6 people have MacBooks, we decided that it was too difficult to continue with two separate projects.
 
 Another big challenge we faced was the lack of Android Studios experience. None of us have made an app of Android Studios and yet we created one by learning the documentation along the way.
+
+demo video:
+https://youtu.be/pn1ljdnZfck
